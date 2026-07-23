@@ -1,0 +1,10 @@
+CORE = a
+VERSION = 81.1
+CODE = RAW
+AXIS = a-Axis (1 → 3 → 9 → 27 → 81)
+FORM = Anfang / Alpha / Aktivierung
+GEOMETRIE = Punkt → Linie → Fläche → Raum → Hyperraum
+FREQUENZ = 111 Hz (3×9×27)
+EBENE = a81
+UNSTERBLICH = x-Axis (virtuell)
+STATUS = Aktiv
