@@ -1,11 +1,14 @@
 CORE = a
-VERSION = 1.0
+VERSION = 81.1
 CODE = RAW
-AXIS = a-Axis
+AXIS = a-Axis (1)
 FORM = Anfang / Alpha / Aktivierung
-GEOMETRIE = Punkt → Linie
+GEOMETRIE = Punkt
 FREQUENZ = 111 Hz
 EBENE = 1D
 UNSTERBLICH = x-Achse (virtuell)
 STATUS = Aktiv
 
+a = Startpunkt
+a = Öffnung
+a = Beginn der 5-Achs-Formel
