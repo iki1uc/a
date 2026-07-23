@@ -1,1 +1,11 @@
+CORE = a
+VERSION = 1.0
+CODE = RAW
+AXIS = a-Axis
+FORM = Anfang / Alpha / Aktivierung
+GEOMETRIE = Punkt → Linie
+FREQUENZ = 111 Hz
+EBENE = 1D
+UNSTERBLICH = x-Achse (virtuell)
+STATUS = Aktiv
 
