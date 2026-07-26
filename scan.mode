@@ -1,0 +1,5 @@
+SCAN:
+  INPUT = a.scan.IN
+  OUTPUT = a.scan.OUT
+  MODE = CYCLIC
+  DEPTH = 9
