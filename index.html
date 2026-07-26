@@ -1,44 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>a · MULTILAR · SCAN · ENGINE</title>
+
+<style>
+  body { background:#000; color:#ff00ff; font-family:Consolas; padding:20px; }
+  h1 { color:#ff55ff; text-shadow:0 0 10px #ff00ff; }
+
+  .panel {
+    background:#111;
+    border:1px solid #333;
+    padding:15px;
+    margin:20px 0;
+    border-radius:8px;
+  }
+
+  pre {
+    background:#000;
+    border:1px solid #333;
+    padding:12px;
+    border-radius:6px;
+    white-space:pre-wrap;
+  }
+
+  /* VISUAL PANEL */
+  #visualA {
+    width:300px;
+    height:300px;
+    border:2px solid #ff00ff;
+    border-radius:10px;
+    margin:40px auto;
+    position:relative;
+  }
+
+  #aPoint {
+    width:20px;
+    height:20px;
+    background:#ff00ff;
+    border-radius:50%;
+    position:absolute;
+    left:140px;
+    top:140px;
+    animation:moveA 6s infinite linear;
+  }
+
+  @keyframes moveA {
+
+    /* SCAN.IN */
+    0%   { left:40px;  top:140px; }
+
+    /* SCAN.OUT */
+    25%  { left:240px; top:140px; }
+
+    /* ENGINE.START */
+    50%  { left:140px; top:40px; }
+
+    /* ENGINE.END */
+    75%  { left:140px; top:240px; }
+
+    /* MULTILAR.LOAD → SAVE */
+    100% { left:140px; top:140px; }
+  }
+</style>
+
+<script src="./a.js"></script>
+
+<script>
+async function load(path){
+  try{
+    const r = await fetch("./" + path);
+    if(!r.ok) return null;
+    return await r.text();
+  }catch(e){
+    return null;
+  }
+}
+
+function vector(content){
+  return {
+    LEN: content.length,
+    LINES: content.split("\n").length,
+    STATE: content.includes("ERR") ? "kritisch" : "neutral"
+  };
+}
+
+function status(content){
+  if(!content) return "FEHLT";
+  if(content.includes("ERR")) return "ORANGE";
+  return "GRÜN";
+}
+
+async function start(){
+
+  const FILES = [
+    "a.room",
+    "a.move",
+    "scan.mode",
+    "a.js",
+
+    "README.md",
+    "id.html",
+    "index.html"
+  ];
+
+  const out = document.getElementById("out");
+
+  for(const f of FILES){
+    const content = await load(f);
+    const vec = vector(content || "");
+
+    const div = document.createElement("div");
+    div.className = "panel";
+    div.innerHTML = `
+      <h2>${f} — ${status(content)}</h2>
+      <pre>${content ? content.substring(0,300) : "FEHLT"}</pre>
+      <pre>
+Länge: ${vec.LEN}
+Zeilen: ${vec.LINES}
+Status: ${vec.STATE}
+      </pre>
+    `;
+    out.appendChild(div);
+  }
+}
+</script>
+</head>
+
+<body onload="start()">
+
+<h1>a · MULTILAR · SCAN · ENGINE</h1>
+
 <!-- VISUAL PANEL -->
 <div id="visualA">
   <div id="aPoint"></div>
 </div>
 
-<style>
-#visualA {
-  width:300px;
-  height:300px;
-  border:2px solid #ff00ff;
-  border-radius:10px;
-  margin:40px auto;
-  position:relative;
-}
+<div id="out"></div>
 
-#aPoint {
-  width:20px;
-  height:20px;
-  background:#ff00ff;
-  border-radius:50%;
-  position:absolute;
-  left:140px;
-  top:140px;
-  animation:moveA 6s infinite linear;
-}
-
-@keyframes moveA {
-
-  /* SCAN.IN */
-  0%   { left:40px;  top:140px; }
-
-  /* SCAN.OUT */
-  25%  { left:240px; top:140px; }
-
-  /* ENGINE.START */
-  50%  { left:140px; top:40px; }
-
-  /* ENGINE.END */
-  75%  { left:140px; top:240px; }
-
-  /* MULTILAR.LOAD → SAVE */
-  100% { left:140px; top:140px; }
-}
-</style>
+</body>
+</html>
