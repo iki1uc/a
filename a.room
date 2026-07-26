@@ -1,0 +1,16 @@
+a = MULTILAR / SCAN / ENGINE
+CORE = a
+VERSION = 1.1
+CODE = RAW
+AXIS = a-Axis (SCAN ↔ ENGINE)
+FORM = Multilar / Scanraum / Enginekern
+GEOMETRIE = Scanmatrix → Enginefeld
+FREQUENZ = 222 Hz
+EBENE = 6D
+STATUS = Aktiv
+
+IDENTITY:
+  a = Scan-Kern
+  a = Engine-Kern
+  a = Multilar-Kern
+  a = Verbindung zwischen S und V
